@@ -28,26 +28,50 @@ function Card() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center overflow-clip">
-    <div className="w-[400px]  h-screen flex flex-col items-center justify-center">
+    <div className="min-h-screen flex flex-col items-center justify-start overflow-y-auto py-12">
+    <div className="w-[400px] flex flex-col items-center">
       <motion.div  initial={{ opacity: 0, visibility: "hidden" }}
           animate={{ opacity: 1, visibility: "visible" }}
           transition={{duration: 1.2}}>
       <div id="card" className={`${cardClass}`} onClick={toggleCard}>     
         <div id="card-inside">
           <div className="wrap">
-            <p>Happy Birthday, John Doe!</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque delectus dolore recusandae eveniet dicta. Corrupti.</p>
+            <p>Happy Birthday, Maria Heselle 🤍</p>
+
             <p>
-              I hope you have a very blessed birthday!
+              Today is a special day, a day when the world feels a little warmer as it celebrates your presence.
             </p>
+
             <p>
-             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repudiandae, cum.
+              May every step you take be filled with peace, and may every smile you give return to you in the form of multiplied happiness.
             </p>
+
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              You are a gentle and sincere soul, a presence that makes even the simplest things feel more meaningful without needing many words.
             </p>
-            <p className="signed">Jane Doe</p>
+
+            <p>
+              In this new chapter of your life, may every hope you hold find its way, and may every bit of your weariness be repaid with the happiness you truly deserve.
+            </p>
+
+            <p>
+              I pray that God always watches over your steps, grants you health, strength, and a gentle heart through every phase of your journey.
+            </p>
+
+            <p>
+              May all your good prayers—both spoken aloud and quietly kept in your heart—be answered at the most beautiful time.
+            </p>
+
+            <p>
+              Thank you for being someone who brings warmth, calm, and a small light into the lives of those around you.
+            </p>
+
+            <p>
+              Happy birthday. May your life always be filled with love, peace, and happiness—today, tomorrow, and always. 🌷
+            </p>
+
+
+            <p className="signed">Ilham</p>
           </div>
         </div>
 

@@ -1,62 +1,56 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { picture} from '../assets';
-import { Link } from 'react-router-dom'; 
+import { motion, AnimatePresence } from 'framer-motion';
+import { picture1, picture2, picture3 } from '../assets';
+import { Link } from 'react-router-dom';
 import SectionWrapper from './SectionWrapper';
-// Add your own images by putting them in the assets folder and import them.
-const images = [
- picture,
- picture,
- picture,
- picture,
 
-];
+const images = [picture1, picture2, picture3];
+
 function Picture() {
-  const [loadedImages, setLoadedImages] = useState(0);
+  const [step, setStep] = useState(0);
 
-  const handleImageLoad = () => {
-    setLoadedImages((prev) => prev + 1);
+  const handleNext = () => {
+    setStep((prev) => Math.min(prev + 1, images.length));
   };
-  const allImagesLoaded = loadedImages === images.length;
+
   return (
     <SectionWrapper>
-      <Link to="/card">
-        <p className="absolute text-4xl font-bold text-customBlue inset-0 flex justify-center items-center text-center transform rotate-6 cursor-pointer">
-          You're Getting Old! :P
-        </p>
-      </Link>
-      {!allImagesLoaded && (
-        <div className="absolute inset-0 flex justify-center items-center">
-          <p className="text-xl font-medium text-gray-500">Loading images...</p>
-        </div>
+      {/* TEXT AFTER LAST IMAGE */}
+      {step === images.length && (
+        <Link to="/card">
+          <motion.p
+            className="absolute inset-0 z-50 flex items-center justify-center text-center text-4xl font-bold text-customBlue cursor-pointer rotate-6"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+          >
+            You're Getting Old! :P
+          </motion.p>
+        </Link>
       )}
-      {images.map((image, index) => (
-        <motion.div
-          key={index}
-          className={`absolute top-0 left-0 w-full h-full transition-opacity duration-500 ${
-            allImagesLoaded ? 'opacity-100' : 'opacity-0'
-          }`}
-          style={{
-            zIndex: images.length - index,
-          }}
-          initial={{
-            scale: 1,
-            rotate: Math.random() * 20 - 10,
-          }}
-          whileDrag={{
-            scale: 1.05,
-            rotate: Math.random() * 20 - 10,
-          }}
-          drag
-        >
-          <img
-            src={image}
-            alt={`Stacked image ${index + 1}`}
-            className="w-full h-full object-cover rounded-lg shadow-lg"
-            onLoad={handleImageLoad} // Increment the counter when the image loads
-          />
-        </motion.div>
-      ))}
+
+      {/* ONE IMAGE AT A TIME */}
+      <AnimatePresence>
+        {step < images.length && (
+          <motion.div
+            key={step}
+            className="absolute inset-0 flex items-center justify-center"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.85 }}
+            drag
+            whileDrag={{ scale: 1.05 }}
+            onDragEnd={handleNext}
+          >
+            <div className="w-[220px] h-[300px] bg-white p-2 rounded-2xl shadow-xl">
+              <img
+                src={images[step]}
+                alt={`Photo ${step + 1}`}
+                className="w-full h-full object-cover rounded-xl"
+              />
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </SectionWrapper>
   );
 }

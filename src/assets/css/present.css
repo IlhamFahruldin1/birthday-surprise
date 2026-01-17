@@ -197,3 +197,16 @@ input#click {
   content: "";
   position: absolute;
 }
+
+.final-message {
+  margin-top: 3rem;
+  text-align: center;
+  font-weight: 600;
+  font-size: 1.1rem;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+#click:checked ~ .final-message {
+  opacity: 1;
+}

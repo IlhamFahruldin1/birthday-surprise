@@ -180,3 +180,24 @@
       padding: 1em; 
     }
   }
+
+      /* FIX CONTENT OVERFLOW */
+    #card-inside {
+      overflow: hidden;
+    }
+
+    #card-inside .wrap {
+      height: auto;
+      max-height: 420px;
+      overflow-y: auto;
+      padding-right: 8px;
+    }
+
+    /* scrollbar halus (opsional, cakep) */
+    #card-inside .wrap::-webkit-scrollbar {
+      width: 6px;
+    }
+    #card-inside .wrap::-webkit-scrollbar-thumb {
+      background: rgba(0,0,0,.2);
+      border-radius: 10px;
+    }
